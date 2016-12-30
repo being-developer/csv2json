@@ -17,18 +17,18 @@ router.get('/csv/to/json', function(req, res, next) {
         var file = req.query.q;
         var leftover = '';
         var leftOverKey = "";
-        var virgin = true;
+        var firsttime = true;
         https.get(file, function(result) {
             result.setEncoding('utf8');
             result.on('data', function(chunk) {
                 chunk = chunk + leftover;
-                if (virgin) {
+                if (firsttime) {
                     chunk = chunk + leftOverKey;
                     var data = chunk.split('\n');
                     if (data.length) {
                         keys = data[0].split(',');
                         for (var i = 1; i < data.length; i++) chunk = data.join('\n')
-                        virgin = false;
+                        firsttime = false;
                     } else {
                         leftOverKey = leftOverKey + chunk;
                     }
