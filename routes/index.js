@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
         title: 'Express'
     });
 });
-router.get('/csv/to/json', function(req, res, next) {
+router.get('convert/csv/to/json', function(req, res, next) {
     if (req.query.q) {
         var keys = [];
         var file = req.query.q;
